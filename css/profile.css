@@ -1,0 +1,26 @@
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .profile-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 0 20px 50px; /* Moves it left with some spacing from the edge */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border: 4px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
