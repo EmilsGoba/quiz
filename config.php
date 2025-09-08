@@ -4,9 +4,9 @@ return [
   "database" => [
   "host" => "localhost",
   "port" => "3306",
-  "dbname" => "voluks",
+  "dbname" => "quiz_app",
   "user" => "root",
-  "password" => "root",
+  "password" => "",
   "charset" => "utf8mb4"
   ]  
 ];

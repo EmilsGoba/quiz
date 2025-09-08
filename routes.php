@@ -1,9 +1,10 @@
 <?php 
 
 return [
-    
+    "/"  => "views/welcome.php",
     "/login"  => "controllers/auth/login.php",
-    "/"  => "controllers/welcome.php",
+    "/register" => "controllers/auth/register.php",
+    
 
 
 

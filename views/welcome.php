@@ -1,8 +1,5 @@
 <?php
-// welcome.php
-session_start();
 
-// If the user is already logged in, redirect them directly to dashboard or home
 if (isset($_SESSION['user_id'])) {
     header("Location: dashboard.php");
     exit();
@@ -51,6 +48,8 @@ if (isset($_SESSION['user_id'])) {
         <h1>Welcome to Quiz App 🎉</h1>
         <p>Please login to continue.</p>
         <a href="/login">Go to Login</a>
+        <p>If you don't have an account, register</p>
+        <a href="/register">Register</a>
     </div>
 </body>
 </html>

@@ -1,9 +1,7 @@
 <?php
 guest();
 
-require "../App/models/Auth.php";
-require "../App/Core/Validator.php";
-$auth = new Auth();
+require "Validator.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = [];
@@ -11,14 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors["username"] = "Username has to be 3-50 chars!";
     }
     
-    if (!Validator::email($_POST["email"])) {
-        $errors["email"] = "Invalid email format!";
-    }
-
-    if (!Validator::password($_POST["password"])) {
-        $errors["password"] = "Incorrect password format!";
-    }
-
+    
     $result = $auth->getUser($_POST["username"]);
 
     if ($result) {
@@ -35,5 +26,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $title = "Register";
-require "../App/views/auth/register.view.php";
-?>
+require "views/auth/register.view.php";

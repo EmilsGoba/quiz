@@ -1,9 +1,9 @@
 <?php
 guest();
-require "../App/models/Auth.php";
-require "../App/Core/Validator.php";
 
-$auth = new Auth();
+require "Validator.php";
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = [];
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 $title = "Log in";
-require "../App/views/auth/login.view.php";
+
 
 unset($_SESSION["flash"]);
-?>
+require "views/auth/login.view.php";
