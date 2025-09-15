@@ -3,27 +3,29 @@ guest();
 
 require "Validator.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $errors = [];
-    if (!Validator::string($_POST["username"], $min=3, $max=50)) {
-        $errors["username"] = "Username has to be 3-50 chars!";
-    }
-    
-    
-    $result = $auth->getUser($_POST["username"]);
+$errors = [];
 
-    if ($result) {
-        $errors["username"] = "Username already taken!";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!Validator::string($_POST["username"], min:2, max:50)) {
+        $errors["content"] = "Too short username or too long";
     }
 
     if (empty($errors)) {
-        $auth->register($_POST["username"], $_POST["password"], $_POST["email"]);
+    $sql = "INSERT INTO users (username, email, password_hash, role) 
+            VALUES (:username, :email, :password_hash, :role)";
+    $params = [
+        "username" => $_POST["username"],
+        "email" => $_POST["email"],
+        "password_hash" => password_hash($_POST["password"], PASSWORD_BCRYPT),
+        "role" => "student"   // 👈 always assign "student"
+    ];
+    $db->query($sql, $params);
 
-        $_SESSION["flash"] = "Registered";
-        header("Location: /login");
-        die();
-    }
+    header("Location: /posts"); 
+    exit();
 }
+};
 
 $title = "Register";
+
 require "views/auth/register.view.php";

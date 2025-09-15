@@ -45,7 +45,7 @@ if (isset($_SESSION['user_id'])) {
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Quiz App 🎉</h1>
+        <h1>Welcome to QuizzIt 🎉</h1>
         <p>Please login to continue.</p>
         <a href="/login">Go to Login</a>
         <p>If you don't have an account, register</p>
