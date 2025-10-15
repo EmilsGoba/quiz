@@ -1,44 +1,39 @@
 <?php
-guest();
-
-require "Validator.php";
 
 
+$style = "/css/login.css";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $errors = [];
-    if (!Validator::string($_POST["username"], min:1, max:255)) {
-        $errors["username"] = "Invalid username";
-    }
-    
-    if (!Validator::string($_POST["password"], min:1, max:255)) {
-        $errors["password"] = "Invalid password";
-    }
+$errors = [];
 
-    $user = $auth->getUser($_POST["username"]);
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = $_POST["email"] ?? '';
+    $password = $_POST["password"] ?? '';
 
-    if (!$user || !password_verify($_POST["password"], $user["password"])) {
-        $errors["username"] = "Incorrect username or password";
-    }
+    if (empty($email) || empty($password)) {
+        $errors["form"] = "Email and password are required.";
+    } else {
+        $user = $db->query(
+            "SELECT * FROM users WHERE email = :email LIMIT 1",
+            ["email" => $email]
+        )->fetch();
 
-    if (empty($errors)) {
-        session_start();
-        $_SESSION["user"] = true;
-        $_SESSION["user_id"] = $user["id"];
-        $_SESSION["is_advanced"] = $user["advanced"] == 1;
-        $_SESSION["is_advancedPlus"] = $user["advancedPlus"] == 1;
-        $_SESSION["username"] = $_POST["username"];
-
-        if ($user["advanced"] == 1) {
-            header("Location: /");
+        if (!$user) {
+            $errors["email"] = "No account found with this email.";
+        } elseif (!password_verify($password, $user["password_hash"])) {
+            $errors["password"] = "Incorrect password.";
         } else {
-            header("Location: /");
+            $_SESSION["logged_in"] = true;
+            $_SESSION["user"] = [
+                "id" => $user["user_id"],
+                "username" => $user["username"],
+                "role" => $user["role"]
+            ];
+            $_SESSION["role"] = $user["role"];
+            header("Location: /posts");
+            exit();
         }
-        die();
     }
 }
-$title = "Log in";
 
-
-unset($_SESSION["flash"]);
+$title = "Login";
 require "views/auth/login.view.php";
