@@ -33,6 +33,10 @@ function Teacher() {
         exit;
     }
 }
+function isTeacher(): bool {
+    return isset($_SESSION['logged_in'], $_SESSION['role']) && $_SESSION['role'] === 'teacher';
+}
+
 
 
 function auth() {
