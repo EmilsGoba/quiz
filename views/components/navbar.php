@@ -14,8 +14,11 @@
   <?php if (isTeacher()): ?>
     <a href="/createtopics" class="nav-btn">Create Topic</a>
   <?php endif; ?>
+  <?php if (isTeacher()): ?>
+    <a href="/" class="nav-btn">Create Topic</a>
+  <?php endif; ?>
 
-  <a href="#" class="nav-btn">Leaderboard</a>
+  <a href="/leaderboard" class="nav-btn">Leaderboard</a>
   </div>
   <a href="/logout" class="nav-btn">Logout</a>
 </nav>

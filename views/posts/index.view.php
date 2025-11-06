@@ -5,11 +5,9 @@ require "views/components/navbar.php";
 <div class="main-container">
   <div class="right-side">
     <div class="quizz-container">
-      <!-- Main form to start the quiz -->
       <form class="quizz-box" action="/quizz/start" method="GET">
         <h2 class="quizz-title">Select a Quiz</h2>
 
-        <!-- Topic -->
         <div class="quizz-field">
           <label for="topic">Topic</label>
           <select
@@ -33,7 +31,6 @@ require "views/components/navbar.php";
           </select>
         </div>
 
-        <!-- Quiz (appears only when a topic is chosen) -->
         <?php if ($selectedTopic > 0): ?>
           <div class="quizz-field">
             <label for="quiz">Quiz</label>
@@ -66,14 +63,35 @@ require "views/components/navbar.php";
       <div class="leaderboard-card">
         <div class="leaderboard-header">
           <h3>Leaderboard</h3>
-          <span class="leaderboard-subtitle">Top scores</span>
+          <span class="leaderboard-subtitle">Top 5</span>
         </div>
+        
+        <ul class="leaderboard-list">
+          <?php if (empty($top_scores)): ?>
+            
+            <li class="leaderboard-row" style="grid-template-columns: 1fr; text-align: center; padding: 16px;">
+              No scores yet.
+            </li>
+
+          <?php else: ?>
+            <?php foreach ($top_scores as $index => $row): ?>
+              
+              <li class="leaderboard-row">
+                <span class="lb-rank"><?= $index + 1 ?></span>
+                <span class="lb-name"><?= htmlspecialchars($row['username'], ENT_QUOTES, 'UTF-8') ?></span>
+                <span class="lb-score"><?= number_format($row['highest_score'], 0) ?></span>
+              </li>
+
+            <?php endforeach; ?>
+          <?php endif; ?>
+        </ul>
+        
         <div class="leaderboard-footer">
-          <a href="#" class="leaderboard-link">View all</a>
+          <a href="/leaderboard" class="leaderboard-link">View all</a>
         </div>
       </div>
     </div>
   </div>
-</div>  
+</div> 
 
 <?php require "views/components/footer.php"; ?>

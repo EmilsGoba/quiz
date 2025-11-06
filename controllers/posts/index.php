@@ -30,4 +30,18 @@ if ($selectedTopic > 0) {
     }
 }
 
+$top_scores_sql = "
+    SELECT
+        u.username,
+        MAX(qa.score) AS highest_score
+    FROM quiz_attempts qa
+    JOIN users u ON qa.user_id = u.user_id
+    WHERE qa.score IS NOT NULL
+    GROUP BY qa.user_id, u.username
+    ORDER BY highest_score DESC
+    LIMIT 5
+";
+$top_scores = $db->query($top_scores_sql, [])->fetchAll();
+
+// Load the view (which now has access to $topics, $quizzes, and $top_scores)
 require "views/posts/index.view.php";

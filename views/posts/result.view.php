@@ -2,40 +2,33 @@
 require "views/components/header.php";
 require "views/components/navbar.php";
 ?>
+
 <div class="quiz-container">
   <div class="quiz-header">
-    <h1 class="quiz-title">Results: <?= htmlspecialchars($quiz['title'], ENT_QUOTES, 'UTF-8') ?></h1>
-    <div class="quiz-meta">
-      <span class="quiz-topic">Topic: <?= htmlspecialchars($quiz['category_name'] ?? '', ENT_QUOTES, 'UTF-8') ?></span>
+    <h1 class="quiz-title">Quiz Completed!</h1>
+  </div>
+
+  <div class="leaderboard-card"> <div class="leaderboard-header">
+        <h3>Your Result</h3>
+    </div>
+    
+    <ul class="leaderboard-list">
+        <li class="leaderboard-row" style="grid-template-columns: 1fr 80px;">
+            <span class="lb-name">Questions Answered</span>
+            <span class="lb-score"><?= (int)$result['correct'] ?> / <?= (int)$result['total'] ?></span>
+        </li>
+        <li class="leaderboard-row" style="grid-template-columns: 1fr 80px;">
+            <span class="lb-name" style="font-weight: 700;">Final Score</span>
+            <span class="lb-score" style="font-size: 1.25rem;"><?= number_format($result['score'], 0) ?>%</span>
+        </li>
+    </ul>
+
+    <div class="leaderboard-footer">
+        <a href="/posts" class="leaderboard-link">Back to Home</a>
+        <a href="/leaderboard" class="leaderboard-link">View Leaderboard</a>
     </div>
   </div>
 
-  <div class="alert alert-success">
-    Score: <strong><?= (int)$correctCount ?>/<?= (int)$total ?></strong> (<?= $scorePct ?>%)
-  </div>
+</div> 
 
-  <ol class="question-list">
-    <?php foreach ($breakdown as $row): ?>
-      <li class="question-item">
-        <div class="question-text"><?= htmlspecialchars($row['question'], ENT_QUOTES, 'UTF-8') ?></div>
-        <div class="answers review">
-          <div class="<?= $row['is_correct'] ? 'good' : 'bad' ?>">
-            Your answer: <?= htmlspecialchars($row['chosen_text'], ENT_QUOTES, 'UTF-8') ?>
-          </div>
-          <?php if (!$row['is_correct']): ?>
-            <div class="correct">
-              Correct: <?= htmlspecialchars($row['correct_text'], ENT_QUOTES, 'UTF-8') ?>
-            </div>
-          <?php endif; ?>
-        </div>
-      </li>
-    <?php endforeach; ?>
-  </ol>
-
-  <div class="quiz-actions">
-  <a href="/quizz/start?topic=<?= (int)$quiz['category_id'] ?>&quiz=<?= (int)$quiz['quiz_id'] ?>&r=<?= time() ?>" class="btn btn-secondary">Try Again</a>
-  <a href="/posts" class="btn">Back</a>
-</div>
-
-</div>
 <?php require "views/components/footer.php"; ?>

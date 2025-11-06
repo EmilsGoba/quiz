@@ -10,6 +10,8 @@ return [
     "/create" => "controllers/posts/create.php",
     "/quizz/start"    => "controllers/posts/start.php",
     "/quizz/submit"   => "controllers/posts/submit.php",
+    "/quizz/result"   => "controllers/posts/result.php",
+    "/leaderboard"   => "controllers/posts/leaderboard.php",
 
 
 

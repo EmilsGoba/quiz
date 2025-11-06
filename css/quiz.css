@@ -77,3 +77,48 @@
 .answers.review .good{color:#065f46}
 .answers.review .bad{color:#b91c1c}
 .answers.review .correct{color:#065f46}
+/* --- Add these new styles to your style.css file --- */
+
+/* 1. Progress Bar Styles */
+.progress-container {
+  margin-bottom: 24px;
+}
+.progress-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background-color: #e5e7eb; /* light grey */
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-bar-inner {
+  height: 100%;
+  width: 0%; /* Starts at 0, JS will update this */
+  background-color: #1677ff; /* primary blue */
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+/* 2. Hide non-active questions */
+.question-item {
+  display: none; /* Hide all questions by default */
+  margin-bottom: 14px;
+}
+.question-item.active {
+  display: block; /* Show only the active one */
+}
+
+/* 3. Validation message style */
+.validation-message {
+  color: #b91c1c; /* red-700 */
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 8px;
+  min-height: 1.2em; /* Reserve space to prevent layout jump */
+}
