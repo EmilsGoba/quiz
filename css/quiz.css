@@ -122,3 +122,46 @@
   margin-top: 8px;
   min-height: 1.2em; /* Reserve space to prevent layout jump */
 }
+
+/* --- quiz.css Responsive Enhancements --- */
+
+/* 1. Main container padding on small screens */
+.quiz-container {
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 12px;
+}
+
+@media (max-width: 520px) {
+    /* Reduce padding on the container for extra-small screens */
+    .quiz-container {
+        padding: 0 8px;
+        margin: 16px auto;
+    }
+
+    /* Reduce font size for the main title */
+    .quiz-title {
+        font-size: 24px;
+    }
+
+    /* Reduce padding for the ordered list */
+    .question-list {
+        padding-left: 18px;
+    }
+
+    /* Make the answer options stack buttons if they were horizontal, or shrink padding */
+    .answer-option {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    /* Stack the action buttons */
+    .quiz-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .btn {
+        width: 100%; /* Make buttons full-width when stacked */
+        text-align: center;
+    }
+}

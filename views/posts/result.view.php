@@ -32,3 +32,4 @@ require "views/components/navbar.php";
 </div> 
 
 <?php require "views/components/footer.php"; ?>
+

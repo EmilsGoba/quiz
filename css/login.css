@@ -82,3 +82,37 @@ button {
 button:hover {
     background: #0652dd;
 }
+/* --- login.css & register.css Responsive Enhancements --- */
+
+@media (max-width: 520px) {
+    /* Remove full viewport height to allow scrolling if needed (e.g., virtual keyboard) */
+    body {
+        height: auto;
+        min-height: 100vh;
+        padding: 20px 10px; /* Add some padding around the form */
+        align-items: flex-start; /* Start content from the top */
+    }
+
+    /* Make form width relative to the screen size */
+    form {
+        width: 100%;
+        max-width: 320px; /* A smaller max-width for better look on small screens */
+        padding: 20px;
+    }
+
+    /* Adjust title size */
+    .form-wrapper h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    /* Smaller padding on the form for very small phones */
+    form {
+        padding: 15px;
+    }
+    button {
+        padding: 10px;
+    }
+}

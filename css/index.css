@@ -234,3 +234,30 @@
   transform: translateY(-1px);
   box-shadow: 0 6px 14px rgba(2, 6, 23, 0.08);
 }
+/* --- index.css Responsive Enhancements --- */
+
+/* Existing @media (max-width: 900px) is great for stacking main-container */
+
+@media (max-width: 520px) {
+    /* Reduce padding on the main-container for extra-small screens */
+    .main-container {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    /* Reduce padding in the quiz and leaderboard boxes */
+    .quizz-box {
+        padding: 1rem;
+    }
+    .leaderboard-header {
+        padding: 10px 12px;
+    }
+    .leaderboard-row {
+        padding: 8px 12px;
+        /* Adjust grid columns for a slightly tighter display */
+        grid-template-columns: 32px 1fr 50px;
+    }
+    .lb-score {
+        font-size: 0.9rem;
+    }
+}

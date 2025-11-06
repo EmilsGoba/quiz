@@ -112,3 +112,39 @@ html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); fon
 .btn-danger:hover {
   background: #dc2626;  /* red-600 */
 }
+/* --- topics.css Responsive Enhancements --- */
+
+/* 1. Main container padding on small screens */
+.container {
+    max-width: 760px;
+    margin: 24px auto;
+    padding: 0 12px;
+}
+
+@media (max-width: 520px) {
+    /* Reduce padding on the container for extra-small screens */
+    .container {
+        padding: 0 8px;
+        margin: 16px auto;
+    }
+
+    /* Reduce font size for page and section titles */
+    .page-title {
+        font-size: 24px;
+    }
+    .section-title {
+        font-size: 18px;
+    }
+
+    /* Make the table container scrollable horizontally on small screens */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    }
+
+    /* Ensure table minimum width to avoid crushing columns */
+    .table {
+        min-width: 400px; /* Adjust this value based on content */
+    }
+}
+/* IMPORTANT: Wrap your existing <table> element with a new <div> element that has the class .table-responsive */
